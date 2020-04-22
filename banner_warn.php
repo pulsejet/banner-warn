@@ -41,26 +41,26 @@
 
             // Warn users if mail from outside organization
             if (!preg_match($RCMAIL->config->get('org_email_regex'), $message->sender['mailto'])) {
-                array_push($content, '<p class="warning"> This mail
+                array_push($content, '<div class="notice warning"> This mail
                     originated from outside of your organization. Do not click links or
                     open attachments unless you recognize the sender and know 
-                    the content is safe.</p>');
+                    the content is safe.</div>');
             }
 
             // Check X-Spam-Status
             $spamStatus = $message->headers->others['x-spam-status'];
             if (isset($spamStatus) && (strpos(strtolower($spamStatus), 'yes') === 0)) {
-                array_push($content, '<p class="error"> This mail
+                array_push($content, '<div class="notice error"> This mail
                     has been identified as possible spam. Be extra careful while interacting
-                    with its contents.</p>');
+                    with its contents.</div>');
             }
 
             // Check Received-SPF
             $spamStatus = $message->headers->others['received-spf'];
             if (isset($spamStatus) && (strpos(strtolower($spamStatus), 'pass') !== 0)) {
-                array_push($content, '<p class="error"> The authenticity of the
+                array_push($content, '<div class="notice error"> The authenticity of the
                     sender of this email could not be verified. <br> Avoid clicking links,
-                    downloading attachments or replying with personal information.</p>');
+                    downloading attachments or replying with personal information.</div>');
             }
 
             return array('content' => $content);
