@@ -1,0 +1,67 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "c190be6f14e6014b02082a81b90f756f",
+    "packages": [
+        {
+            "name": "roundcube/plugin-installer",
+            "version": "0.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/roundcube/plugin-installer.git",
+                "reference": "98af3c61566b4387aeae76cfa89076a8c39a0ddc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/roundcube/plugin-installer/zipball/98af3c61566b4387aeae76cfa89076a8c39a0ddc",
+                "reference": "98af3c61566b4387aeae76cfa89076a8c39a0ddc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "composer/composer": "*"
+            },
+            "bin": [
+                "src/bin/rcubeinitdb.sh"
+            ],
+            "type": "composer-installer",
+            "extra": {
+                "class": "Roundcube\\Composer\\PluginInstaller"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Roundcube\\Composer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Bruederli",
+                    "email": "thomas@roundcube.net"
+                },
+                {
+                    "name": "Till Klampaeckel",
+                    "email": "till@php.net"
+                }
+            ],
+            "description": "A composer-installer for Roundcube plugins.",
+            "time": "2019-04-13T07:06:54+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
