@@ -91,7 +91,7 @@
                         $color = 'ff0000';
                         $name = '!';
                     }
-                    else if ($this->addressExternal($from["mailto"])) {
+                    else if ($RCMAIL->config->get('avatars_external_border') && $this->addressExternal($from["mailto"])) {
                         $banner_avatar[$message->uid]['warn'] = 1;
                     }
 

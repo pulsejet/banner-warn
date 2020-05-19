@@ -8,3 +8,6 @@ $config['org_email_regex'] = "/@(.*\.|)iitb\.ac\.in/i";
 // Turn on letter avatars
 $config['avatars'] = true;
 
+// Add a red border to external emails on avatar
+$config['avatars_external_border'] = true;
+
