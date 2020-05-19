@@ -14,8 +14,8 @@ var banner_warn = {
         // Add column of avatar
         $('td.subject', evt.row.obj).before(`
             <td class="banner-warn">
-                <div style="background-color: #${rcmail.env.banner_avatar[evt.uid].color};" class="avatar ${warn}">
-                    ${rcmail.env.banner_avatar[evt.uid].name}
+                <div style="color: #${rcmail.env.banner_avatar[evt.uid].color};" class="avatar ${warn}">
+                    <span style="color: white"> ${rcmail.env.banner_avatar[evt.uid].name} </span>
                 </div>
             </td>`
         );
