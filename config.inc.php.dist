@@ -11,3 +11,6 @@ $config['avatars'] = true;
 // Add a red border to external emails on avatar
 $config['avatars_external_border'] = true;
 
+// Minimum level of spam to alert user for
+$config['spam_level_threshold'] = 3;
+

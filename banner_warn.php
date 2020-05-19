@@ -26,7 +26,7 @@
 
         public function storage_init($p)
         {
-            $p['fetch_headers'] = trim($p['fetch_headers'] . ' ' . strtoupper('X-Spam-Status') . ' ' . strtoupper('Received-SPF'));
+            $p['fetch_headers'] = trim($p['fetch_headers'] . ' ' . strtoupper('X-Spam-Status') . ' ' . strtoupper('X-Spam-Level'). ' ' . strtoupper('Received-SPF'));
             return $p;
         }
 
@@ -67,7 +67,7 @@
                 $RCMAIL = rcmail::get_instance();
 
                 // Check if avatars disabled
-                if (!$RCMAIL->config->get('avatars')) return;
+                if (!$RCMAIL->config->get('avatars', true)) return;
 
                 $banner_avatar = array();
                 foreach ($p['messages'] as $index => $message) {
@@ -96,7 +96,7 @@
                         $name = '!';
                         $banner_avatar[$message->uid]['alert'] = 1;
                     }
-                    else if ($RCMAIL->config->get('avatars_external_border') && $this->addressExternal($from["mailto"])) {
+                    else if ($RCMAIL->config->get('avatars_external_border', true) && $this->addressExternal($from["mailto"])) {
                         $banner_avatar[$message->uid]['warn'] = 1;
                     }
 
@@ -121,8 +121,13 @@
         }
 
         private function isSpam($headers) {
+            $RCMAIL = rcmail::get_instance();
+
             $spamStatus = $headers->others['x-spam-status'];
-            return (isset($spamStatus) && (strpos(strtolower($spamStatus), 'yes') === 0));
+            if (isset($spamStatus) && (strpos(strtolower($spamStatus), 'yes') === 0)) return true;
+
+            $spamLevel = $headers->others['x-spam-level'];
+            return (isset($spamLevel) && substr_count($spamLevel, '*') >= $RCMAIL->config->get('spam_level_threshold', 3));
         }
     }
 
