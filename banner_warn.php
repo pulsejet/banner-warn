@@ -65,6 +65,9 @@
             if (!empty($p['messages'])) {
                 $RCMAIL = rcmail::get_instance();
 
+                // Check if avatars disabled
+                if (!$RCMAIL->config->get('avatars')) return;
+
                 $banner_avatar = array();
                 foreach ($p['messages'] as $index => $message) {
                     // Create entry
