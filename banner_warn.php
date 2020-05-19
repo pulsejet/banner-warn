@@ -67,6 +67,10 @@
 
                 $banner_avatar = array();
                 foreach ($p['messages'] as $index => $message) {
+                    // Create entry
+                    $banner_avatar[$message->uid] = array();
+
+                    // Parse from address
                     $from = rcube_mime::decode_address_list($message->from, 1, false, null, false)[1];
 
                     // Get first letter of name
@@ -84,8 +88,10 @@
                         $color = 'ff0000';
                         $name = '!';
                     }
+                    else if ($this->addressExternal($from["mailto"])) {
+                        $banner_avatar[$message->uid]['warn'] = 1;
+                    }
 
-                    $banner_avatar[$message->uid] = array();
                     $banner_avatar[$message->uid]['name'] = $name;
                     $banner_avatar[$message->uid]['color'] = $color;
                 }
