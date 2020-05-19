@@ -52,8 +52,8 @@
             }
 
             // Check Received-SPF
-            $spamStatus = $message->headers->others['received-spf'];
-            if (isset($spamStatus) && (strpos(strtolower($spamStatus), 'pass') !== 0)) {
+            $spfStatus = $message->headers->others['received-spf'];
+            if (isset($spfStatus) && (strpos(strtolower($spfStatus), 'pass') !== 0)) {
                 array_push($content, '<div class="notice error">' . $this->gettext('spf_fail') . '</div>');
             }
 
