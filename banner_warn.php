@@ -77,18 +77,21 @@
                     // Parse from address
                     $from = rcube_mime::decode_address_list($message->from, 1, false, null, false)[1];
 
-                    // Get first letter of name
-                    $name = $from["name"];
-                    if (empty($name)) {
-                        $name = $from["mailto"];
-                    }
-                    $name = strtoupper($name[0]);
+                    // Check if we have a from email address (uhh)
+                    if (isset($from)) {
+                        // Get first letter of name
+                        $name = $from["name"];
+                        if (empty($name)) {
+                            $name = $from["mailto"];
+                        }
+                        $name = strtoupper($name[0]);
 
-                    // Get md5 color from email
-                    $color = substr(md5($from["mailto"]), 0, 6);
+                        // Get md5 color from email
+                        $color = substr(md5($from["mailto"]), 0, 6);
+                    }
 
                     // Check for SPF fail
-                    if ($this->isSpam($message) || $this->spfFails($message)) {
+                    if (!isset($from) || $this->isSpam($message) || $this->spfFails($message)) {
                         $color = 'ff0000';
                         $name = '!';
                         $banner_avatar[$message->uid]['alert'] = 1;
