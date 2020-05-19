@@ -91,6 +91,7 @@
                     if ($this->isSpam($message) || $this->spfFails($message)) {
                         $color = 'ff0000';
                         $name = '!';
+                        $banner_avatar[$message->uid]['alert'] = 1;
                     }
                     else if ($RCMAIL->config->get('avatars_external_border') && $this->addressExternal($from["mailto"])) {
                         $banner_avatar[$message->uid]['warn'] = 1;

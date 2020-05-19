@@ -10,11 +10,12 @@ var banner_warn = {
 
         // Border for warning the user
         const warn = rcmail.env.banner_avatar[evt.uid].warn ? "warn" : "";
+        const calert = rcmail.env.banner_avatar[evt.uid].alert ? "alert" : "";
 
         // Add column of avatar
         $('td.subject', evt.row.obj).before(`
             <td class="banner-warn">
-                <div style="color: #${rcmail.env.banner_avatar[evt.uid].color};" class="avatar ${warn}">
+                <div style="color: #${rcmail.env.banner_avatar[evt.uid].color};" class="avatar ${warn} ${calert}">
                     <span style="color: white"> ${rcmail.env.banner_avatar[evt.uid].name} </span>
                 </div>
             </td>`

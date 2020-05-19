@@ -17,7 +17,6 @@ td.banner-warn {
 
 .banner-warn .avatar.warn {
     border-radius: 0;
-    width: 32px;
     height: 18.48px;
     line-height: 18.48px;
     position: relative;
@@ -43,5 +42,9 @@ td.banner-warn {
     border-top: 9.24px solid currentColor;
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
+}
+
+.banner-warn .avatar.alert {
+    border-radius: 0;
 }
 
