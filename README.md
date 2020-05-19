@@ -18,7 +18,7 @@ Warnings are displayed similar to Outlook \
 
 ### Avatars
 The plugin can optionally also add avatars that display the user's first letter, and warn the user for various contexts \
-<img src="screenshots/avatars.png" alt="Avatars" width="800"/>
+<img src="screenshots/avatars1.png" alt="Avatars" width="800"/>
 
 ## Installation
 To install, get the plugin with composer in your roundcube directory
