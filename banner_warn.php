@@ -16,8 +16,11 @@
         function init()
         {
             $this->load_config();
+            $this->include_script('banner_warn.js');
+
             $this->add_hook('storage_init', array($this, 'storage_init'));
             $this->add_hook('message_objects', array($this, 'warn'));
+            $this->add_hook('messages_list', array($this, 'mlist'));
         }
 
         public function storage_init($p)
@@ -58,6 +61,36 @@
             }
 
             return array('content' => $content);
+        }
+
+        public function mlist($p)
+        {
+            if (!empty($p['messages'])) {
+                $rcmail = rcmail::get_instance();
+
+                $banner_avatar = array();
+                foreach ($p['messages'] as $index => $message) {
+                    $from = rcube_mime::decode_address_list($message->from, 1, false, null, false)[1];
+
+                    // Get first letter of name
+                    $name = $from["name"];
+                    if (empty($name)) {
+                        $name = $from["mailto"];
+                    }
+                    $name = strtoupper($name[0]);
+
+                    // Get md5 color from email
+                    $color = substr(md5($from["mailto"]), 0, 6);
+
+                    $banner_avatar[$message->uid] = array();
+                    $banner_avatar[$message->uid]['name'] = $name;
+                    $banner_avatar[$message->uid]['color'] = $color;
+                }
+
+                $rcmail->output->set_env('banner_avatar', $banner_avatar);
+            }
+
+            return $p;
         }
     }
 
