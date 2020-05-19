@@ -1,6 +1,6 @@
 /*
- * authres_status plugin
- * @author pimlie
+ * banner_warn plugin
+ * @author pulsejet
  */
 
 var banner_warn = {
