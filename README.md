@@ -16,6 +16,10 @@ Warnings are displayed similar to Outlook \
 <img src="screenshots/spam.png" alt="Spam Email" width="600"/>
 <img src="screenshots/spffail.png" alt="SPF failing Email" width="600"/>
 
+### Avatars
+The plugin can optionally also add avatars that display the user's first letter, and warn the user for various contexts \
+<img src="screenshots/avatars.png" alt="Avatars" width="800"/>
+
 ## Installation
 To install, get the plugin with composer in your roundcube directory
 ```
