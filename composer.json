@@ -3,7 +3,7 @@
     "type": "roundcube-plugin",
     "description": "Display warnings to roundcube users for SPF failure, spam and external senders",
     "license": "MIT",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "authors": [
         {
             "name": "Varun Patil",

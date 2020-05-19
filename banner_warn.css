@@ -1,5 +1,9 @@
 td.banner-warn {
-    width: 42px; padding-left: 7px; padding-right: 3px; margin: 0px;    
+    width: 42px;
+    padding-left: 7px;
+    padding-right: 3px;
+    margin: 0px;
+    vertical-align: middle !important;
 }
 
 .banner-warn .avatar {
@@ -9,7 +13,7 @@ td.banner-warn {
     vertical-align: middle;
     font-size: 1.2em;
     padding: 0;
-    margin: 0;
+    margin: auto;
     box-sizing: border-box;
     line-height: 32px;
     background: currentColor;
