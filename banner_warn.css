@@ -1,0 +1,22 @@
+td.banner-warn {
+    width: 42px; padding-left: 7px; padding-right: 3px; margin: 0px;    
+}
+
+.banner-warn .avatar {
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.2em;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 32px;
+}
+
+.banner-warn .avatar.warn {
+    line-height: 28px;
+    border: 2px solid red;
+}
+

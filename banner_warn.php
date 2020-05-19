@@ -17,6 +17,7 @@
         {
             $this->load_config();
             $this->include_script('banner_warn.js');
+            $this->include_stylesheet('banner_warn.css');
 
             $this->add_hook('storage_init', array($this, 'storage_init'));
             $this->add_hook('message_objects', array($this, 'warn'));
