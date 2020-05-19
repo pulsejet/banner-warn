@@ -31,7 +31,6 @@
 
         public function warn($args)
         {
-            $RCMAIL = rcmail::get_instance();
             $this->add_texts('localization/');
 
             // Preserve exiting headers
@@ -44,19 +43,17 @@
             }
 
             // Warn users if mail from outside organization
-            if (!preg_match($RCMAIL->config->get('org_email_regex'), $message->sender['mailto'])) {
+            if ($this->addressExternal($message->sender['mailto'])) {
                 array_push($content, '<div class="notice warning">' . $this->gettext('from_outsite') . '</div>');
             }
 
             // Check X-Spam-Status
-            $spamStatus = $message->headers->others['x-spam-status'];
-            if (isset($spamStatus) && (strpos(strtolower($spamStatus), 'yes') === 0)) {
+            if ($this->isSpam($message->headers)) {
                 array_push($content, '<div class="notice error">' . $this->gettext('posible_spam') . '</div>');
             }
 
             // Check Received-SPF
-            $spfStatus = $message->headers->others['received-spf'];
-            if (isset($spfStatus) && (strpos(strtolower($spfStatus), 'pass') !== 0)) {
+            if ($this->spfFails($message->headers)) {
                 array_push($content, '<div class="notice error">' . $this->gettext('spf_fail') . '</div>');
             }
 
@@ -66,7 +63,7 @@
         public function mlist($p)
         {
             if (!empty($p['messages'])) {
-                $rcmail = rcmail::get_instance();
+                $RCMAIL = rcmail::get_instance();
 
                 $banner_avatar = array();
                 foreach ($p['messages'] as $index => $message) {
@@ -82,15 +79,36 @@
                     // Get md5 color from email
                     $color = substr(md5($from["mailto"]), 0, 6);
 
+                    // Check for SPF fail
+                    if ($this->isSpam($message) || $this->spfFails($message)) {
+                        $color = 'ff0000';
+                        $name = '!';
+                    }
+
                     $banner_avatar[$message->uid] = array();
                     $banner_avatar[$message->uid]['name'] = $name;
                     $banner_avatar[$message->uid]['color'] = $color;
                 }
 
-                $rcmail->output->set_env('banner_avatar', $banner_avatar);
+                $RCMAIL->output->set_env('banner_avatar', $banner_avatar);
             }
 
             return $p;
+        }
+
+        private function addressExternal($address) {
+            $RCMAIL = rcmail::get_instance();
+            return (!preg_match($RCMAIL->config->get('org_email_regex'), $address));
+        }
+
+        private function spfFails($headers) {
+            $spfStatus = $headers->others['received-spf'];
+            return (isset($spfStatus) && (strpos(strtolower($spfStatus), 'pass') !== 0));
+        }
+
+        private function isSpam($headers) {
+            $spamStatus = $headers->others['x-spam-status'];
+            return (isset($spamStatus) && (strpos(strtolower($spamStatus), 'yes') === 0));
         }
     }
 
