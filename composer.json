@@ -1,9 +1,9 @@
 {
     "name": "radialapps/banner-warn",
     "type": "roundcube-plugin",
-    "description": "Display warnings to roundcube users for SPF failure, spam and external senders",
+    "description": "Show avatars in roundcube message list with warnings",
     "license": "MIT",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "authors": [
         {
             "name": "Varun Patil",

@@ -1,17 +1,9 @@
 # Roundcube Banner Warn
 
-Displays avatars in message list and banner warnings to roundcube users under some contexts.
-
-## Name of this plugin
-This plugin is named as such for historical reasons. The chief functionality currently is showing avatars beside the message list, and banner warnings are displayed for individual emails as well.
-
-## Types of warnings
-* Email originating from outside your organization
-* Marked as spam in X-Spam-Status
-* Failing Received-SPF
+Displays avatars in roundcube message list and banner warnings under some contexts.
 
 ## Screenshots
-The add avatars to the message list that display the user's contact photo first letter, and warn the user for various contexts. On multiselecting emails, the avatas animate similar to the Gmail app \
+The plugin adds avatars to the message list that display the user's contact photo or a colored first letter, and warna the user for various contexts. On multiselecting emails, the avatas animate similar to the Gmail app \
 <img src="screenshots/avatars1.png" alt="Avatars" width="800"/>
 
 ### Banner Warnings
@@ -22,6 +14,14 @@ Warnings are displayed similar to Outlook \
 <img src="screenshots/external.png" alt="External Email" width="600"/>
 <img src="screenshots/spam.png" alt="Spam Email" width="600"/>
 <img src="screenshots/spffail.png" alt="SPF failing Email" width="600"/>
+
+## Types of warnings
+* Email originating from outside your organization
+* Marked as spam in X-Spam-Status
+* Failing Received-SPF
+
+## Name of this plugin
+This plugin is named as such for historical reasons. The chief functionality currently is showing avatars beside the message list, and banner warnings are displayed for individual emails as well.
 
 ## Installation
 To install, get the plugin with composer in your roundcube directory
