@@ -24,7 +24,10 @@ var banner_warn = {
                 $('<div />', { class: 'avatar ' + warn + calert, style: 'color: #' + obj.color }).append(
                     $('<img />', { src: image, alt: obj.name })
                 )
-            )
+            ).on('mousedown', function(event) {
+                rcmail.message_list.select_row(evt.uid, CONTROL_KEY, true);
+                event.stopPropagation();
+            })
         );
     }
 };
