@@ -102,6 +102,7 @@
                     }
 
                     $banner_avatar[$message->uid]['name'] = $name;
+                    $banner_avatar[$message->uid]['from'] = $from['mailto'];
                     $banner_avatar[$message->uid]['color'] = $color;
                 }
 

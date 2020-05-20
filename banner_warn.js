@@ -8,15 +8,21 @@ var banner_warn = {
         // Check if we have the required data
         if (!rcmail.env.banner_avatar || !rcmail.env.banner_avatar[evt.uid]) return;
 
+        // Get object
+        const obj = rcmail.env.banner_avatar[evt.uid];
+
         // Border for warning the user
-        const warn = rcmail.env.banner_avatar[evt.uid].warn ? "warn" : "";
-        const calert = rcmail.env.banner_avatar[evt.uid].alert ? "alert" : "";
+        const warn = obj.warn ? "warn" : "";
+        const calert = obj.alert ? "alert" : "";
+
+        // Get image avatar
+        const image = (warn || calert) ? "" : `./?_task=addressbook&_action=photo&_email=${obj.from}&_error=1`;
 
         // Add column of avatar
         $('td.subject', evt.row.obj).before(`
             <td class="banner-warn">
-                <div style="color: #${rcmail.env.banner_avatar[evt.uid].color};" class="avatar ${warn} ${calert}">
-                    <span style="color: white"> ${rcmail.env.banner_avatar[evt.uid].name} </span>
+                <div class="avatar ${warn} ${calert}" style='color: #${obj.color};'>
+                    <img src="${image}" style="color: white;" alt="${obj.name}" />
                 </div>
             </td>`
         );

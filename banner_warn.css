@@ -17,13 +17,21 @@ td.banner-warn {
     box-sizing: border-box;
     line-height: 32px;
     background: currentColor;
+    position: relative;
+}
+.banner-warn .avatar > img {
+    vertical-align: top !important;
+    object-fit: cover;
+    max-height: calc(100% + 2px);
+    max-width: calc(100% + 2px);
+    margin: -1px;
+    border-radius: inherit;
 }
 
 .banner-warn .avatar.warn {
     border-radius: 0;
     height: 18.48px;
     line-height: 18.48px;
-    position: relative;
 }
 .banner-warn .avatar.warn:before, .banner-warn .avatar.warn:after {
     content: "";
