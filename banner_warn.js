@@ -25,8 +25,10 @@ var banner_warn = {
                     $('<img />', { src: image, alt: '' }).on('error', function () {
                         $(this).replaceWith($('<span />').html(obj.name));
                     }).on('load', function () {
-                        $(this).css('opacity', 1);
-                    }).css('opacity', 0)
+                        $(this).css('visibility', 'visible');
+                    }).css('visibility', 'hidden')
+                ).append(
+                    $('<span />', { class: 'tick' }).html('&#10003;')
                 ).css('color', '#' + obj.color)
             ).on('mousedown', function (event) {
                 rcmail.message_list.select_row(evt.uid, CONTROL_KEY, true);
@@ -41,5 +43,15 @@ var banner_warn = {
 window.rcmail && rcmail.addEventListener('init', function(evt) {
         if (rcmail.gui_objects.messagelist) {
             rcmail.addEventListener('insertrow', banner_warn.insertrow);
+
+            const _hrow = rcmail.message_list.highlight_row.bind(rcmail.message_list);
+            rcmail.message_list.highlight_row = function(...args) {
+                if (args[1]) {
+                    $(rcmail.message_list.tbody).addClass('multiselect');
+                } else {
+                    $(rcmail.message_list.tbody).removeClass('multiselect');
+                }
+                _hrow(...args);
+            }
         }
 });

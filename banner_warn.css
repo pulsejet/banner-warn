@@ -18,9 +18,11 @@ td.banner-warn {
     line-height: 32px;
     background: currentColor;
     position: relative;
+    transition: all 400ms ease-out;
 }
 .banner-warn .avatar > * {
     color: white;
+    transition: opacity 300ms ease-out;
 }
 .banner-warn .avatar > img {
     vertical-align: top !important;
@@ -29,6 +31,24 @@ td.banner-warn {
     max-width: calc(100% + 2px);
     margin: -1px;
     border-radius: inherit;
+}
+
+.tick {
+    display: block;
+    opacity: 0;
+    transform: rotateY(180deg) translateX(50%);
+    top: 0; left: 50%;
+    position: absolute;
+}
+.multiselect .selected .banner-warn .avatar {
+    color: #d00 !important;
+    transform: rotateY(180deg);
+}
+.multiselect .selected .banner-warn .avatar > * {
+    opacity: 0;
+}
+.multiselect .selected .banner-warn .avatar > .tick {
+    opacity: 1;
 }
 
 .banner-warn .avatar.warn {
