@@ -75,7 +75,7 @@
                     $banner_avatar[$message->uid] = array();
 
                     // Parse from address
-                    $from = rcube_mime::decode_address_list($message->from, 1, false, null, false)[1];
+                    $from = rcube_mime::decode_address_list($message->from, 1, true, null, false)[1];
 
                     // Check if we have a from email address (uhh)
                     if (isset($from)) {
@@ -84,6 +84,7 @@
                         if (empty($name)) {
                             $name = $from["mailto"];
                         }
+                        $name = preg_replace("/[^A-Za-z0-9 ]/", '', $name);
                         $name = strtoupper($name[0]);
 
                         // Get md5 color from email
