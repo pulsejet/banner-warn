@@ -20,6 +20,7 @@ td.banner-warn {
     position: relative;
     transition: all 400ms ease-out;
     cursor: pointer;
+    user-select: none;
 }
 .banner-warn .avatar > * {
     color: white;
@@ -44,6 +45,9 @@ td.banner-warn {
 .multiselect .selected .banner-warn .avatar {
     color: #1565c0 !important;
     transform: rotateY(180deg);
+}
+.multiselect .selected.flagged .banner-warn .avatar {
+    color: #ff5552 !important;
 }
 .multiselect .selected .banner-warn .avatar > * {
     opacity: 0;
