@@ -21,11 +21,17 @@ var banner_warn = {
         // Add column of avatar
         $('td.subject', evt.row.obj).before(
             $('<td/>', { class: 'banner-warn' }).append(
-                $('<div />', { class: 'avatar ' + warn + calert, style: 'color: #' + obj.color }).append(
-                    $('<img />', { src: image, alt: obj.name })
-                )
-            ).on('mousedown', function(event) {
+                $('<div />', { class: 'avatar ' + warn + calert }).append(
+                    $('<img />', { src: image, alt: '' }).on('error', function () {
+                        $(this).replaceWith($('<span />').html(obj.name));
+                    }).on('load', function () {
+                        $(this).css('opacity', 1);
+                    }).css('opacity', 0)
+                ).css('color', '#' + obj.color)
+            ).on('mousedown', function (event) {
                 rcmail.message_list.select_row(evt.uid, CONTROL_KEY, true);
+                event.stopPropagation();
+            }).on('touchstart', function (event) {
                 event.stopPropagation();
             })
         );

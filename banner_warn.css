@@ -19,6 +19,9 @@ td.banner-warn {
     background: currentColor;
     position: relative;
 }
+.banner-warn .avatar > * {
+    color: white;
+}
 .banner-warn .avatar > img {
     vertical-align: top !important;
     object-fit: cover;
@@ -26,7 +29,6 @@ td.banner-warn {
     max-width: calc(100% + 2px);
     margin: -1px;
     border-radius: inherit;
-    color: white;
 }
 
 .banner-warn .avatar.warn {
