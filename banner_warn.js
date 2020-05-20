@@ -12,19 +12,19 @@ var banner_warn = {
         const obj = rcmail.env.banner_avatar[evt.uid];
 
         // Border for warning the user
-        const warn = obj.warn ? "warn" : "";
-        const calert = obj.alert ? "alert" : "";
+        const warn = obj.warn ? 'warn ' : '';
+        const calert = obj.alert ? 'alert ' : '';
 
         // Get image avatar
-        const image = (warn || calert) ? "" : `./?_task=addressbook&_action=photo&_email=${obj.from}&_error=1`;
+        const image = (warn || calert) ? '' : './?_task=addressbook&_action=photo&_email=' + obj.from + '&_error=1';
 
         // Add column of avatar
-        $('td.subject', evt.row.obj).before(`
-            <td class="banner-warn">
-                <div class="avatar ${warn} ${calert}" style='color: #${obj.color};'>
-                    <img src="${image}" style="color: white;" alt="${obj.name}" />
-                </div>
-            </td>`
+        $('td.subject', evt.row.obj).before(
+            $('<td/>', { class: 'banner-warn' }).append(
+                $('<div />', { class: 'avatar ' + warn + calert, style: 'color: #' + obj.color }).append(
+                    $('<img />', { src: image, alt: obj.name })
+                )
+            )
         );
     }
 };

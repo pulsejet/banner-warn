@@ -26,6 +26,7 @@ td.banner-warn {
     max-width: calc(100% + 2px);
     margin: -1px;
     border-radius: inherit;
+    color: white;
 }
 
 .banner-warn .avatar.warn {
