@@ -5,6 +5,7 @@ Displays avatars in roundcube message list and banner warnings under some contex
 ## Screenshots
 The plugin adds avatars to the message list that display the user's contact photo or a colored first letter, and warns the user for various contexts. On multiselecting emails, the avatas animate similar to the Gmail app \
 <img src="screenshots/avatars1.png" alt="Avatars" width="800"/>
+<img src="screenshots/avatars2.png" alt="Avatars" width="800"/>
 
 ### Banner Warnings
 Warnings are displayed similar to Outlook \
