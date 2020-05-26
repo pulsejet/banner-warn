@@ -26,7 +26,10 @@
 
         public function storage_init($p)
         {
-            $p['fetch_headers'] = trim($p['fetch_headers'] . ' ' . strtoupper('X-Spam-Status') . ' ' . strtoupper('X-Spam-Level'). ' ' . strtoupper('Received-SPF'));
+	    
+            $RCMAIL = rcmail::get_instance();
+	    $x_spam_header = $RCMAIL->config->get('x_spam_header', 'x-spam-status');
+            $p['fetch_headers'] = trim($p['fetch_headers'] . ' ' . strtoupper($x_spam_header) . ' ' . strtoupper('X-Spam-Level'). ' ' . strtoupper('Received-SPF'));
             return $p;
         }
 
@@ -125,7 +128,9 @@
         private function isSpam($headers) {
             $RCMAIL = rcmail::get_instance();
 
-            $spamStatus = $headers->others['x-spam-status'];
+	    $x_spam_header = $RCMAIL->config->get('x_spam_header', 'x-spam-status');
+
+            $spamStatus = $headers->others[$x_spam_header];
             if (isset($spamStatus) && (strpos(strtolower($spamStatus), 'yes') === 0)) return true;
 
             $spamLevel = $headers->others['x-spam-level'];
