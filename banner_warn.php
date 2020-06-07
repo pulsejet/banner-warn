@@ -15,7 +15,9 @@
 
         function init()
         {
-            $this->load_config();
+            $this->load_config('config.inc.php.dist');
+            $this->load_config('config.inc.php');
+
             $this->include_script('banner_warn.js');
             $this->include_stylesheet('banner_warn.css');
 
