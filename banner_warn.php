@@ -13,6 +13,12 @@
     {
         public $task = 'mail';
 
+        private $org_mail_regex;
+        private $x_spam_status_header;
+        private $x_spam_level_header;
+        private $received_spf_header;
+        private $spam_level_threshold;
+
         function init()
         {
             $this->load_config('config.inc.php.dist');
@@ -24,14 +30,21 @@
             $this->add_hook('storage_init', array($this, 'storage_init'));
             $this->add_hook('message_objects', array($this, 'warn'));
             $this->add_hook('messages_list', array($this, 'mlist'));
+
+            // Get RCMAIL object
+            $RCMAIL = rcmail::get_instance();
+
+            // Get config
+            $this->org_mail_regex = $RCMAIL->config->get('org_email_regex');
+            $this->x_spam_status_header = $RCMAIL->config->get('x_spam_status_header');
+            $this->x_spam_level_header = $RCMAIL->config->get('x_spam_level_header');
+            $this->received_spf_header = $RCMAIL->config->get('received_spf_header');
+            $this->spam_level_threshold = $RCMAIL->config->get('spam_level_threshold');
         }
 
         public function storage_init($p)
         {
-	    
-            $RCMAIL = rcmail::get_instance();
-	    $x_spam_header = $RCMAIL->config->get('x_spam_header', 'x-spam-status');
-            $p['fetch_headers'] = trim($p['fetch_headers'] . ' ' . strtoupper($x_spam_header) . ' ' . strtoupper('X-Spam-Level'). ' ' . strtoupper('Received-SPF'));
+            $p['fetch_headers'] = trim($p['fetch_headers'] . ' ' . strtoupper($this->x_spam_status_header) . ' ' . strtoupper($this->x_spam_level_header). ' ' . strtoupper($this->received_spf_header));
             return $p;
         }
 
@@ -102,7 +115,7 @@
                         $name = '!';
                         $banner_avatar[$message->uid]['alert'] = 1;
                     }
-                    else if ($RCMAIL->config->get('avatars_external_border', true) && $this->addressExternal($from["mailto"])) {
+                    else if ($RCMAIL->config->get('avatars_external_hexagon', true) && $this->addressExternal($from["mailto"])) {
                         $banner_avatar[$message->uid]['warn'] = 1;
                     }
 
@@ -118,25 +131,20 @@
         }
 
         private function addressExternal($address) {
-            $RCMAIL = rcmail::get_instance();
-            return (!preg_match($RCMAIL->config->get('org_email_regex'), $address));
+            return (!preg_match($this->org_mail_regex, $address));
         }
 
         private function spfFails($headers) {
-            $spfStatus = $headers->others['received-spf'];
+            $spfStatus = $headers->others[strtolower($this->received_spf_header)];
             return (isset($spfStatus) && (strpos(strtolower($spfStatus), 'pass') !== 0));
         }
 
         private function isSpam($headers) {
-            $RCMAIL = rcmail::get_instance();
-
-	    $x_spam_header = $RCMAIL->config->get('x_spam_header', 'x-spam-status');
-
-            $spamStatus = $headers->others[$x_spam_header];
+            $spamStatus = $headers->others[strtolower($this->x_spam_status_header)];
             if (isset($spamStatus) && (strpos(strtolower($spamStatus), 'yes') === 0)) return true;
 
-            $spamLevel = $headers->others['x-spam-level'];
-            return (isset($spamLevel) && substr_count($spamLevel, '*') >= $RCMAIL->config->get('spam_level_threshold', 3));
+            $spamLevel = $headers->others[strtolower($this->x_spam_level_header)];
+            return (isset($spamLevel) && substr_count($spamLevel, '*') >= $this->spam_level_threshold);
         }
     }
 

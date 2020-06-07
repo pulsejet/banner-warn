@@ -8,11 +8,18 @@ $config['org_email_regex'] = "/@(.*\.|)iitb\.ac\.in/i";
 // Turn on letter avatars
 $config['avatars'] = true;
 
-// Add a red border to external emails on avatar
-$config['avatars_external_border'] = true;
+// Make external avatars hexagon
+$config['avatars_external_hexagon'] = true;
 
-// Minimum level of spam to alert user for
-$config['spam_level_threshold'] = 3;
+// Header that marks the message as SPAM. ('Yes').
+$config['x_spam_status_header'] = 'x-spam-status';
 
-// Header that marks the message as SPAM. ('Yes'). Set it in lowecase.
-$config['x_spam_header'] = 'x-spam-status';
+// Header to check spam level. Counts number of asterisk in this.
+$config['x_spam_level_header'] = 'x-spam-level';
+
+// Spam threshold for X-Spam-Level to alert user for
+$config['spam_level_threshold'] = 4;
+
+// Header that marks the message as SPF fail. ('Pass' to pass).
+$config['received_spf_header'] = 'received-spf';
+
