@@ -26,6 +26,9 @@ Warnings are displayed similar to Outlook \
 ## Name of this plugin
 This plugin is named as such for historical reasons. The chief functionality currently is showing avatars beside the message list, and banner warnings are displayed for individual emails as well.
 
+## I don't use avatar images
+You can save your server performance by preventing a ton of requests in this case by replacing the line `const image = ...` in `banner_warn.js` with `const image = '';`
+
 ## Installation
 To install, get the plugin with composer in your roundcube directory
 ```

@@ -16,6 +16,8 @@ var banner_warn = {
         const calert = obj.alert ? 'alert ' : '';
 
         // Get image avatar
+        // Uncomment the following line and comment the next line if you don't use avatar images
+        // const image = '';
         const image = (warn || calert) ? '' : './?_task=addressbook&_action=photo&_email=' + obj.from + '&_error=1';
 
         // Add column of avatar
