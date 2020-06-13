@@ -23,3 +23,7 @@ $config['spam_level_threshold'] = 4;
 // Header that marks the message as SPF fail. ('Pass' to pass).
 $config['received_spf_header'] = 'received-spf';
 
+// Display images for avatars
+// If you don't use images for avatars, set `false` to save performance
+$config['avatar_images'] = true;
+

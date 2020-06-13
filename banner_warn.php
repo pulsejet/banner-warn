@@ -18,6 +18,7 @@
         private $x_spam_level_header;
         private $received_spf_header;
         private $spam_level_threshold;
+        private $avatar_images;
 
         function init()
         {
@@ -40,6 +41,7 @@
             $this->x_spam_level_header = $RCMAIL->config->get('x_spam_level_header');
             $this->received_spf_header = $RCMAIL->config->get('received_spf_header');
             $this->spam_level_threshold = $RCMAIL->config->get('spam_level_threshold');
+            $this->avatar_images = $RCMAIL->config->get('avatar_images');
         }
 
         public function storage_init($p)
@@ -125,6 +127,7 @@
                 }
 
                 $RCMAIL->output->set_env('banner_avatar', $banner_avatar);
+                $RCMAIL->output->set_env('banner_avatar_images', $this->avatar_images);
             }
 
             return $p;
