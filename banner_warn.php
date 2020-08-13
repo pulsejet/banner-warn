@@ -133,20 +133,24 @@
             return $p;
         }
 
+        private function first($obj) {
+            return (isset($obj) && is_array($obj)) ? $obj[0] : $obj;
+        }
+
         private function addressExternal($address) {
             return (!preg_match($this->org_mail_regex, $address));
         }
 
         private function spfFails($headers) {
-            $spfStatus = $headers->others[strtolower($this->received_spf_header)];
+            $spfStatus = $this->first($headers->others[strtolower($this->received_spf_header)]);
             return (isset($spfStatus) && (strpos(strtolower($spfStatus), 'pass') !== 0));
         }
 
         private function isSpam($headers) {
-            $spamStatus = $headers->others[strtolower($this->x_spam_status_header)];
+            $spamStatus = $this->first($headers->others[strtolower($this->x_spam_status_header)]);
             if (isset($spamStatus) && (strpos(strtolower($spamStatus), 'yes') === 0)) return true;
 
-            $spamLevel = $headers->others[strtolower($this->x_spam_level_header)];
+            $spamLevel = $this->first($headers->others[strtolower($this->x_spam_level_header)]);
             return (isset($spamLevel) && substr_count($spamLevel, '*') >= $this->spam_level_threshold);
         }
     }
