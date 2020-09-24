@@ -9,7 +9,7 @@ $labels['from_outsite'] = "Questo messaggio proviene
     messaggio";
 $labels['posible_spam'] = "Questo messaggio è stato
     riconosciuto come potenziale SPAM. Si consiglia di essere
-    estremamente cauti nell\'interagire con il relativo contenuto";
+    estremamente cauti nell'interagire con il relativo contenuto";
 $labels['spf_fail'] = "Non è stato possibile verificare
     l'autenticità del mittente di questo messaggio.<br>Si
     consiglia di evitare di fare clic su eventuali link, scaricare
