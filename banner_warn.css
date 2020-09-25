@@ -1,27 +1,46 @@
+/* Cell */
 td.banner-warn {
-    width: 42px;
-    padding-left: 7px;
-    padding-right: 3px;
     margin: 0px;
     vertical-align: middle !important;
+    padding: 0 !important;
+}
+.widescreen td.banner-warn,
+.listing td.banner-warn {
+    width: 42px;
+    padding-left: 7px !important;
+    padding-right: 3px !important;
 }
 
+/* Header (only for list/desktop on classic/larry) */
+th.banner-warn {
+    width: 20px;
+    padding: 0 !important;
+}
+
+/* Avatar box */
 .banner-warn .avatar {
     border-radius: 50%;
-    width: 32px; height: 32px;
     text-align: center;
     vertical-align: middle;
     font-size: 1.2em;
     padding: 0;
     margin: auto;
     box-sizing: border-box;
-    line-height: 32px;
     background: currentColor;
     position: relative;
     transition: all 400ms ease-out;
     cursor: pointer;
     user-select: none;
+    width: 20px; height: 20px;
+    line-height: 20px;
 }
+.widescreen .banner-warn .avatar,
+.listing .banner-warn .avatar {
+    width: 32px; height: 32px;
+    line-height: 32px;
+}
+
+/* Avatar text or image */
 .banner-warn .avatar > * {
     color: white;
     transition: opacity 300ms ease-out;
@@ -35,6 +54,7 @@ td.banner-warn {
     border-radius: inherit;
 }
 
+/* Selection tick */
 .tick {
     display: block;
     opacity: 0;
@@ -56,12 +76,17 @@ td.banner-warn {
     opacity: 1;
 }
 
+/* Hexagon (widescreen) or square for outsite */
 .banner-warn .avatar.warn {
     border-radius: 0;
+}
+.widescreen .banner-warn .avatar.warn,
+.listing .banner-warn .avatar.warn {
     height: 18.48px;
     line-height: 18.48px;
 }
-.banner-warn .avatar.warn:before, .banner-warn .avatar.warn:after {
+.widescreen .banner-warn .avatar.warn:before, .widescreen .banner-warn .avatar.warn:after,
+.listing .banner-warn .avatar.warn:before, .listing .banner-warn .avatar.warn:after {
     content: "";
     position: absolute;
     width: 0;
@@ -69,15 +94,18 @@ td.banner-warn {
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
 }
-.banner-warn .avatar.warn:before {
+.widescreen .banner-warn .avatar.warn:before,
+.listing .banner-warn .avatar.warn:before {
     bottom: 100%;
     border-bottom: 9.24px solid currentColor;
 }
-.banner-warn .avatar.warn:after {
+.widescreen .banner-warn .avatar.warn:after,
+.listing .banner-warn .avatar.warn:after {
     top: 100%;
     border-top: 9.24px solid currentColor;
 }
 
+/* Square for spam/spf fail */
 .banner-warn .avatar.alert {
     border-radius: 0;
 }

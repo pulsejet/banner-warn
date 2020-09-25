@@ -38,6 +38,13 @@ var banner_warn = {
                 event.stopPropagation();
             })
         );
+
+        // Add column of avatar if does not exit
+        if ($('th.banner-warn').length === 0 && $('th.subject').length > 0) {
+            $('th.subject').before(
+                $('<th/>', { class: 'banner-warn' })
+            );
+        }
     }
 };
 
