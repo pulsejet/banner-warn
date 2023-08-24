@@ -1,3 +1,8 @@
+/* Disable Selection in Select which will break the ui */
+a#list-toggle-button.selection {
+    display: none;
+}
+
 /* Cell */
 td.banner-warn {
     margin: 0px;
@@ -8,7 +13,7 @@ td.banner-warn {
 .listing td.banner-warn {
     width: 42px;
     padding-left: 7px !important;
-    padding-right: 3px !important;
+    padding-right: 0px !important;
 }
 
 /* Header (only for list/desktop on classic/larry) */
@@ -24,7 +29,7 @@ th.banner-warn {
     vertical-align: middle;
     font-size: 1.2em;
     padding: 0;
-    margin: auto;
+    margin: 30% auto;
     box-sizing: border-box;
     background: currentColor;
     position: relative;
@@ -48,9 +53,9 @@ th.banner-warn {
 .banner-warn .avatar > img {
     vertical-align: top !important;
     object-fit: cover;
-    max-height: calc(100% + 2px);
-    max-width: calc(100% + 2px);
-    margin: -1px;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
     border-radius: inherit;
 }
 
