@@ -142,15 +142,15 @@
         }
 
         private function spfFails($headers) {
-            $spfStatus = $this->first($headers->others[strtolower($this->received_spf_header)]);
+            $spfStatus = $this->first($headers->others[strtolower($this->received_spf_header)] ?? null);
             return (isset($spfStatus) && (strpos(strtolower($spfStatus), 'pass') !== 0));
         }
 
         private function isSpam($headers) {
-            $spamStatus = $this->first($headers->others[strtolower($this->x_spam_status_header)]);
+            $spamStatus = $this->first($headers->others[strtolower($this->x_spam_status_header)] ?? null);
             if (isset($spamStatus) && (strpos(strtolower($spamStatus), 'yes') === 0)) return true;
 
-            $spamLevel = $this->first($headers->others[strtolower($this->x_spam_level_header)]);
+            $spamLevel = $this->first($headers->others[strtolower($this->x_spam_level_header)] ?? null);
             return (isset($spamLevel) && substr_count($spamLevel, '*') >= $this->spam_level_threshold);
         }
     }
