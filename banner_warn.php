@@ -36,6 +36,8 @@
             $RCMAIL = rcmail::get_instance();
 
             // Get config
+            $host =  $RCMAIL->config->get('org_email_regex');
+            $this->org_mail_regex = rcube_utils::parse_host($host);
             $this->org_mail_regex = $RCMAIL->config->get('org_email_regex');
             $this->x_spam_status_header = $RCMAIL->config->get('x_spam_status_header');
             $this->x_spam_level_header = $RCMAIL->config->get('x_spam_level_header');
