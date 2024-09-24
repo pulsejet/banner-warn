@@ -46,7 +46,11 @@
 
         public function storage_init($p)
         {
-            $p['fetch_headers'] = trim($p['fetch_headers'] . ' ' . strtoupper($this->x_spam_status_header) . ' ' . strtoupper($this->x_spam_level_header). ' ' . strtoupper($this->received_spf_header));
+            $p['fetch_headers'] = trim(($p['fetch_headers'] ?? '')
+                . ' ' . strtoupper($this->x_spam_status_header)
+                . ' ' . strtoupper($this->x_spam_level_header)
+                . ' ' . strtoupper($this->received_spf_header)
+            );
             return $p;
         }
 
