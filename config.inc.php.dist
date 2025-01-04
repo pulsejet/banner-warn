@@ -3,7 +3,13 @@
 $config = array();
 
 // Regex to match against the email to determine if from your organization
-$config['org_email_regex'] = "/@(.*\.|)iitb\.ac\.in/i";
+// Supported replacement variables:
+// %n - hostname ($_SERVER['SERVER_NAME'])
+// %t - hostname without the first part
+// %d - domain (http hostname $_SERVER['HTTP_HOST'] without the first part)
+// %s - domain name after the '@' from e-mail address provided at login screen
+// For example %n = mail.domain.tld, %t = domain.tld
+$config['org_email_regex'] = '/@(.*\.|)%t/i';
 
 // Turn on letter avatars
 $config['avatars'] = true;
